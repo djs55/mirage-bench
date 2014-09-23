@@ -3,7 +3,7 @@
 
 import os, sys
 
-unpaused = "libxl__device_nic_add: domain is unpaused; bailing out"
+unpaused = "domain is unpaused; bailing out"
 
 def parse(lines):
     phase = 0
