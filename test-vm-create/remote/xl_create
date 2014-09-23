@@ -3,8 +3,7 @@
 TEST_PATH=$(dirname $0)
 REPS=10
 
-MEM_SIZES="16 32 64 128 256"
-unikernel=$TEST_PATH/../unikernel/mir-www.xen
+unikernel=/dev/shm/mir-network.xen
 
 echo "Generating config files..."
 for mem in 16 32 64 128 256; do
@@ -27,7 +26,9 @@ for r in $(seq 1 $REPS); do
         mem=$(cat $f | grep memory | cut -f 2 -d "=" | tr -d " ")
         echo "memory=$mem"
         date >> create_${mem}.log
-        sudo -s time -p xl create $f 2>&1 | tee -a create_${mem}.log
+        #sudo -s time -p xl create $f 2>&1 | tee -a create_${mem}.log
+        echo -n 'real ' >> create_${mem}.log
+        sudo ./xl-preload -vvv create $f 2>&1 | ./extract-time.py >> create_${mem}.log
         sudo xl destroy test-unikernel
         sleep 2
     done
