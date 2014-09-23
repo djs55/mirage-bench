@@ -7,12 +7,20 @@ name_map["wait_x_xl_create"] = "xl_create"
 name_map["wait_x_xl_fast_bridge_create"] = "xl_create_fb"
 name_map["wait_x_xl_no_net"] = "xl_create_no_net"
 
+libxl_tests = [
+		"1-unoptimised",
+		"2-simplified-hotplug-script",
+		"3-ioctls-for-hotplug",
+		"4-parallise-vif-setup",
+		"5-remove-console"
+]
+
 findnum = re.compile(r'\d+')
 
 results = {}
 found_keys = []
 found_tests = []
-for test in glob.glob("wait_x_*"):
+for test in libxl_tests:
     if test in name_map:
         name = name_map[test]
     else:
@@ -23,7 +31,7 @@ for test in glob.glob("wait_x_*"):
     if name not in found_tests:
         found_tests.append(name)
 
-    for result in glob.glob(test + "/remote/create_*.log"):
+    for result in glob.glob("remote/" + test + "/create_*.log"):
         memsize=int(findnum.findall(result.rpartition("/")[2]).pop())
         results[name][memsize]=[]
 
@@ -44,7 +52,7 @@ import numpy as np
 
 labels = sorted(found_keys)
 ind = np.arange(len(labels))  # the x locations for the groups
-width = 0.25       # the width of the bars
+width = 0.15       # the width of the bars
 
 fig, ax = plt.subplots()
 ax.set_ylabel('Startup time in seconds')
@@ -55,7 +63,7 @@ ax.set_xticklabels( labels )
 means = {}
 std = {}
 bars = []
-colors = ['r','b','g']
+colors = ['b','g','r','c','m','y','k']
 
 for test in sorted(found_tests):
     means[test] = []
