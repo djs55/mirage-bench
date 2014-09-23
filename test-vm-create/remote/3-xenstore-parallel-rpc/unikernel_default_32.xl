@@ -3,4 +3,4 @@ name = 'test-unikernel'
     builder = 'linux'
     memory = 32
     on_crash = 'preserve'
-    vif = [ 'mac=c0:ff:ee:c0:ff:ee,bridge=br0' ]
+    vif = [ 'mac=c0:ff:ee:c0:ff:ee,bridge=br0,script=/local/scratch/djs/mirage-bench/test-vm-create/remote/fast-vif-bridge' ]
