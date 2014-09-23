@@ -1,6 +1,0 @@
-name = 'test-unikernel'
-    kernel = '/dev/shm/mir-network.xen'
-    builder = 'linux'
-    memory = 256
-    on_crash = 'preserve'
-    vif = [ 'mac=c0:ff:ee:c0:ff:ee,bridge=br0' ]
