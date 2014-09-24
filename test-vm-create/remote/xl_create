@@ -6,7 +6,8 @@ REPS=10
 unikernel=/dev/shm/mir-network.xen
 
 echo "Generating config files..."
-for mem in 16 32 64 128 256; do
+#for mem in 16 32 64 128 256; do
+for mem in 256; do
     filename="unikernel_default_${mem}.xl"
     echo $filename
     echo "name = 'test-unikernel'
