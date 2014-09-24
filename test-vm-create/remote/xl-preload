@@ -1,4 +1,4 @@
 #!/bin/sh
 # Location of a xen build tree
-DIR=/local/scratch/djs/xen/tools/
-LD_PRELOAD="$DIR/libxc/libxenctrl.so $DIR/xenstore/libxenstore.so $DIR/libxc/libxenguest.so $DIR/libxl/libxenlight.so" /usr/lib/xen-4.4/bin/xl  $*
+DIR=/home/djs/djs55/xen/tools/
+LD_PRELOAD="$DIR/libxc/libxenctrl.so $DIR/xenstore/libxenstore.so $DIR/libxc/libxenguest.so $DIR/libxl/libxlutil.so $DIR/libxl/libxenlight.so" $DIR/libxl/xl  $*
